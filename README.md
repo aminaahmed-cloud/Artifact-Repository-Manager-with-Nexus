@@ -146,10 +146,58 @@ open port 8081 on the firewall to access:
 <img src="https://i.imgur.com/cdQGcCB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 
 
+</details>
+
+******
+
+<details>
+<summary>  Build and publish npm tar </summary>
+ <br />
+
+**steps**
+
+This guide demonstrates how to test that the Project 1 user in Nexus Repository Manager has correct access configured by building and publishing a Node.js tar package to the npm repository.
+
+## Prerequisites
+
+Before proceeding, ensure the following:
+
+- You have administrative access to Nexus Repository Manager.
+- The Project 1 user has been created and granted access to the npm repository as outlined in the previous section.
+- You have a Node.js application ready to publish.
+
+## Steps
+
+1. **Prepare Your Node.js Application:**
+   - Ensure your Node.js application is properly configured and ready for publication. This typically involves having a `package.json` file with necessary metadata and dependencies.
+
+2. **Build the Package:**
+   - Navigate to the root directory of your Node.js application in the terminal.
+   - Run the following command to build your package:
+
+     ```
+     npm pack
+     ```
+
+   This command will generate a tarball file (`.tgz`) containing your Node.js application and its dependencies.
+
+   <img src="https://i.imgur.com/dGsdXFr.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+
+4. **Publish the Tarball to Nexus npm Repository:**
+   - Once the tarball is generated, use the following command to publish it to the npm repository hosted in Nexus Repository Manager:
+
+     ```
+     npm publish --registry={npm-repo-url-in-nexus} {path/to/your/package.tgz}
+     ```
+<img src="https://i.imgur.com/mJUiP3o.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+
+   Replace `{npm-repo-url-in-nexus}` with the URL of your npm repository in Nexus Repository Manager, and `{path/to/your/package.tgz}` with the path to the generated tarball file.
 
 
 
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
