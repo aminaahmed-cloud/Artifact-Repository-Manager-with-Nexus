@@ -55,10 +55,22 @@ switch from root to nexus
 `
 Su - Nexus
 `
+then start Nexus
+
+<img src="https://i.imgur.com/dHV7ndT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 
 
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/sodeCmp.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+open port 8081 on the firewall to access:
+
+
+<img src="https://i.imgur.com/1gLAHC8.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+
+
+
+
+
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
