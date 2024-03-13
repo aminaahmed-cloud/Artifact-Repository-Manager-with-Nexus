@@ -185,7 +185,70 @@ open port 8081 on the firewall to access:
    Replace `{npm-repo-url-in-nexus}` with the URL of your npm repository in Nexus Repository Manager, and `{path/to/your/package.tgz}` with the path to the generated tarball file.
 
 
+</details>
 
+******
+
+<details>
+<summary> Create maven hosted repository </summary>
+ <br />
+
+## Steps
+
+1. **Log in to Nexus Repository Manager:**
+   - Open your web browser and navigate to the Nexus Repository Manager web interface.
+
+2. **Access Repositories Settings:**
+   - Once logged in, click on the "Repositories" tab in the top navigation bar.
+
+3. **Create Maven Hosted Repository:**
+   - Click on "Repositories" in the sidebar.
+   - Click on the "Create repository" button.
+   - Select "Maven (hosted)" as the repository format.
+   - Click "Next".
+
+4. **Fill in Repository Details:**
+   - Enter the following details for the new Maven hosted repository:
+     - Name: Choose a name for your repository (e.g., `maven-hosted`).
+     - Blob Store: Select an existing blob store or create a new one.
+     - Version Policy: Choose the version policy according to your requirements (e.g., `Mixed - Release and Snapshot`).
+     - Layout Policy: Choose the layout policy (e.g., `maven2`).
+   - Click "Create repository".
+
+
+</details>
+
+******
+
+<details>
+<summary> Create user for team 2 </summary>
+ <br />
+
+## Steps
+
+1. **Log in to Nexus Repository Manager:**
+   - Open your web browser and navigate to the Nexus Repository Manager web interface.
+
+2. **Access Security Settings:**
+   - Once logged in, click on the "Security" tab in the top navigation bar.
+
+3. **Create User:**
+   - In the "Security" section, click on "Users" in the sidebar.
+   - Click on the "Create User" button.
+
+4. **Fill in User Details:**
+   - Enter the details for the new user, including:
+     - Username: Choose a username for the user (e.g., `team2`).
+     - First Name and Last Name: Optionally, provide the user's full name.
+     - Email: Enter the user's email address.
+     - Password: Set a secure password for the user.
+     - Status: Ensure the status is set to "Active".
+
+5. **Assign Roles:**
+   - In the "Roles" section, assign appropriate roles to the user. For accessing a Maven repository, you may want to assign roles like "nx-repository-view-maven-*" for read-only access or "nx-repository-admin-maven-*" for administrative access to Maven repositories. You can also assign custom roles if needed.
+
+6. **Save User:**
+   - Click the "Create User" button to save the new user.
 
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
