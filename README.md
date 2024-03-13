@@ -154,17 +154,6 @@ open port 8081 on the firewall to access:
 <summary>  Build and publish npm tar </summary>
  <br />
 
-**steps**
-
-This guide demonstrates how to test that the Project 1 user in Nexus Repository Manager has correct access configured by building and publishing a Node.js tar package to the npm repository.
-
-## Prerequisites
-
-Before proceeding, ensure the following:
-
-- You have administrative access to Nexus Repository Manager.
-- The Project 1 user has been created and granted access to the npm repository as outlined in the previous section.
-- You have a Node.js application ready to publish.
 
 ## Steps
 
