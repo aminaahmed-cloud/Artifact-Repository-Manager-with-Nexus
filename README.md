@@ -250,9 +250,131 @@ open port 8081 on the firewall to access:
 6. **Save User:**
    - Click the "Create User" button to save the new user.
 
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 
+</details>
+
+******
+
+<details>
+<summary> Build and publish jar file </summary>
+ <br />
+
+ ## Steps
+
+1. **Prepare Your Java Project:**
+   - Ensure your Java project is properly configured and ready for publication. This typically involves having a `pom.xml` file with necessary dependencies and configurations.
+
+2. **Build the Project:**
+   - Navigate to the root directory of your Java project in the terminal.
+   - Run the following Maven command to build your project:
+
+     ```
+     mvn clean package
+     ```
+
+   This command will compile your Java code, run tests, and package your project into a JAR file.
+
+3. **Publish the JAR to Nexus Maven Repository:**
+   - Once the build is successful, use the following Maven command to publish the JAR file to the Maven repository hosted in Nexus Repository Manager:
+
+     ```
+     mvn deploy:deploy-file -DgroupId={group-id} -DartifactId={artifact-id} -Dversion={version} -Dpackaging=jar -Dfile={path/to/your/jar-file} -DrepositoryId={repository-id} -Durl={maven-repo-url-in-nexus}
+     ```
+
+   Replace `{group-id}`, `{artifact-id}`, `{version}`, and `{path/to/your/jar-file}` with appropriate values corresponding to your Java project.
+   - `{repository-id}`: This is the ID of the server configuration in your Maven `settings.xml` file. If not configured, you can use any identifier.
+   - `{maven-repo-url-in-nexus}`: This is the URL of your Maven repository in Nexus Repository Manager.
+
+
+</details>
+
+******
+
+<details>
+<summary> Download from Nexus and start application </summary>
+ <br />
+
+
+ ## Steps
+
+### 1. Create New User for Droplet Server
+
+- In Nexus Repository Manager, create a new user with appropriate permissions to access both npm and Maven repositories.
+- Note down the username and password for this user, as you'll need it to authenticate API requests.
+
+### 2. Fetch Download URL for Latest Node.js App Artifact
+
+- On your DigitalOcean droplet, using the Nexus REST API, fetch the download URL information for the latest Node.js app artifact stored in the npm repository.
+- You can use tools like `curl` or scripting languages like Python or Node.js to make HTTP requests to the Nexus API.
+
+### 3. Execute Command to Fetch Latest Artifact
+
+- Once you have the download URL for the latest Node.js app artifact, execute a command on your droplet to fetch the artifact.
+- You can use `curl` or tools like `wget` to download the artifact from the provided URL.
+
+### 4. Untar the Artifact and Run the Application
+
+- After downloading the artifact, untar it using the appropriate command.
+- Start your Node.js application by running the necessary commands (e.g., `npm start`).
+
+
+
+</details>
+
+******
+
+<details>
+<summary> Automate </summary>
+ <br />
+
+You decide to automate the fetching from Nexus and starting the application So you:
+
+Write a script that fetches the latest version from npm repository. Untar it and run on the server!
+Execute the script on the droplet
+Hints:
+
+# save the artifact details in a json file
+curl -u {user}:{password} -X GET 'http://{nexus-ip}:8081/service/rest/v1/components?repository={node-repo}&sort=version' | jq "." > artifact.json
+
+# grab the download url from the saved artifact details using 'jq' json processor tool
+artifactDownloadUrl=$(jq '.items[].assets[].downloadUrl' artifact.json --raw-output)
+
+# fetch the artifact with the extracted download url using 'wget' tool
+wget --http-user={user} --http-password={password} $artifactDownloadUrl
+
+## Steps
+
+### 1. Write Script to Fetch and Start Application
+
+- Write a script that fetches the latest version of the artifact from the Nexus repository, untars it, and starts the application.
+- You can use tools like `curl`, `jq`, and `wget` to interact with the Nexus REST API and download the artifact.
+
+### 2. Execute Script on the Droplet
+
+- SSH into your DigitalOcean droplet.
+- Transfer the script to the droplet if it's not already there.
+- Execute the script on the droplet to automate the process of fetching the artifact and starting the application.
+
+### Example Script:
+
+```bash
+#!/bin/bash
+
+# Fetch latest artifact details from Nexus and save to artifact.json
+curl -u {user}:{password} -X GET 'http://{nexus-ip}:8081/service/rest/v1/components?repository={node-repo}&sort=version' | jq "." > artifact.json
+
+# Extract download URL from saved artifact details
+artifactDownloadUrl=$(jq '.items[].assets[].downloadUrl' artifact.json --raw-output)
+
+# Fetch the artifact with the extracted download URL using 'wget'
+wget --http-user={user} --http-password={password} $artifactDownloadUrl
+
+# Untar the downloaded artifact
+tar -xzf artifact.tar.gz
+
+# Start the application (example command, replace with your actual start command)
+node app.js
+```
+</details>
+
+ 
